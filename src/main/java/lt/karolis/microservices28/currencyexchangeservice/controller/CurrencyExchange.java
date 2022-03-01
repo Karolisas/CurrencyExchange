@@ -1,19 +1,25 @@
 package lt.karolis.microservices28.currencyexchangeservice.controller;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-public class CurencyExchange {
+@Entity
+@Table(name = "CURRENCY_EXCHANGE")
+public class CurrencyExchange {
 
+    @Id
     private Long id;
+    @Column(name = "currency_from")
     private String from;
+    @Column(name = "currency_to")
     private String to;
     private BigDecimal conversionMultiple;
     private String environment;
 
-    public CurencyExchange() {
+    public CurrencyExchange() {
     }
 
-    public CurencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
+    public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
         this.id = id;
         this.from = from;
         this.to = to;

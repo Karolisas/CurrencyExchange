@@ -26,7 +26,7 @@ public class CurrencyExchangeController {
 
 //        CurrencyExchange curencyExchange = new CurrencyExchange(1000L, from, to, new BigDecimal(50));
 
-
+//A
         logger.info("getExchangeRate called with {} to {} ", from ,to);
 
         CurrencyExchange curencyExchange = repository.findByFromAndTo(from, to);

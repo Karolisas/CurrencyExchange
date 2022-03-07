@@ -22,6 +22,19 @@ services:
     networks:
       - currency-network
 
+  currency-conversion-service:
+    image: in28min/mvn2-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
 
   api-gateway:
     image: in28min/mvn2-api-gateway:0.0.1-SNAPSHOT
@@ -43,6 +56,15 @@ services:
       - "9411:9411"
     networks:
       - currency-network
+#  rabbitmq:
+#    image: rabbitmq:3.5.3-management
+#    mem_limit: 300m
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
+#    networks:
+#      - currency-network
+
 
 networks:
   currency-network:
